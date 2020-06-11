@@ -44,56 +44,62 @@ def keydownup(num):
     # 第三个是参数是作为判断按下与抬起的标识，按下时为0即可，因为键盘的全过程是按下与抬起，所有两个keybd_event才是一个完整的过程，其中一定要给其中添加一个时间暂停的，不然还是无法使用，即使在操作台或者pycharm上可以输入，在游戏中便没有效果了，时间自己可以传参数进去，也可以规定一个固定的值，这个时间便是你按住的时间
 
 # li = [chr(i) for i in range(ord("A"),ord("Z")+1)]
-time.sleep(3)
+# time.sleep(3)
 # for i in li:
 #     print(i)
 #     keydownup(key_num[i])
 
-keydownup(0x1)
-keydownup(0x1)
-keydownup(0x1)
+# keydownup(0x1)
+# keydownup(0x1)
+# keydownup(0x1)
 # abcdefghijklmnopqrstuvwxyz
 # abcdefghijklmnopqrstuvwxyz
 # abcdefghijklmnopqrstuvwxyz
 
+MapVirtualKey = ctypes.windll.user32.MapVirtualKeyA
+num = key_num["c"]
+print(win32con.KEYEVENTF_KEYUP)
+print(MapVirtualKey(num, 0))
 
+keydownup(key_num["2"])
 
 
 # 待考究
 
-"""
-
-值 描述
-0x1 鼠标左键
-0x2 鼠标右键
-0x3 CANCEL 键
-0x4 鼠标中键
-0x8 BACKSPACE 键
-0x9 TAB 键
-0xC CLEAR 键
-0xD ENTER 键
-0x10 SHIFT 键
-0x11 CTRL 键
-0x12 MENU 键
-0x13 PAUSE 键
-0x14 CAPS LOCK 键
-0x1B ESC 键
-0x20 SPACEBAR 键
-0x21 PAGE UP 键
-0x22 PAGE DOWN 键
-0x23 END 键
-0x24 HOME 键
-0x25 LEFT ARROW 键
-0x26 UP ARROW 键
-0x27 RIGHT ARROW 键
-0x28 DOWN ARROW 键
-0x29 SELECT 键
-0x2A PRINT SCREEN 键
-0x2B EXECUTE 键
-0x2C SNAPSHOT 键
-0x2D INSERT 键
-0x2E DELETE 键
-0x2F HELP 键
-0x90 NUM LOCK 键
-
-"""
+#
+# """
+#
+# 值 描述
+# 0x1 鼠标左键
+# 0x2 鼠标右键
+# 0x3 CANCEL 键
+# 0x4 鼠标中键
+# 0x8 BACKSPACE 键
+# 0x9 TAB 键
+# 0xC CLEAR 键
+# 0xD ENTER 键
+# 0x10 SHIFT 键
+# 0x11 CTRL 键
+# 0x12 MENU 键
+# 0x13 PAUSE 键
+# 0x14 CAPS LOCK 键
+# 0x1B ESC 键
+# 0x20 SPACEBAR 键
+# 0x21 PAGE UP 键
+# 0x22 PAGE DOWN 键
+# 0x23 END 键
+# 0x24 HOME 键
+# 0x25 LEFT ARROW 键
+# 0x26 UP ARROW 键
+# 0x27 RIGHT ARROW 键
+# 0x28 DOWN ARROW 键
+# 0x29 SELECT 键
+# 0x2A PRINT SCREEN 键
+# 0x2B EXECUTE 键
+# 0x2C SNAPSHOT 键
+# 0x2D INSERT 键
+# 0x2E DELETE 键
+# 0x2F HELP 键
+# 0x90 NUM LOCK 键
+#
+# """
