@@ -1,0 +1,10 @@
+{
+    "title": "Resolume Arena - Example (1280 x 720)",
+    "com": "com4",
+    "串口转按键":{
+        "q": 1,
+        "w": 2,
+        "e": 3,
+        "r": 4
+    }
+}

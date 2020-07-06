@@ -29,7 +29,6 @@ import win32gui,win32con
 handle = win32gui.FindWindow(None, "/perform")
 print(handle)
 
-
 def show():
     # windows handlers
     hwnd = handle
@@ -43,6 +42,6 @@ def hide():
     win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST, 0, 0, 0, 0,
                           win32con.SWP_HIDEWINDOW | win32con.SWP_NOMOVE | win32con.SWP_NOSIZE | win32con.SWP_NOACTIVATE | win32con.SWP_NOOWNERZORDER)
 
-win32gui.SetForegroundWindow(handle)
-show()
+# win32gui.SetForegroundWindow(handle)
+# show()
 # hide()
