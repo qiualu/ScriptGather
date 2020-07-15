@@ -27,25 +27,21 @@ with open("TDXY.json","r",encoding="UTF-8") as f:
     TDx = res["TDX"]
     TDy = res["TDY"]
     Ys = res["延时启动"]
+    TDtime = res["TD启动时间"]
 
 print(TDx,TDy,Ys)
 # 1481 1605
 TDx,TDy = 645,30
 def Three_Click():
     # （6）设置鼠标位置
+    print(TDx, TDy, Ys)
     win32api.SetCursorPos((TDx, TDy))
-    # （2）鼠标左键按下
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
-    time.sleep(0.05)
-    # （3）鼠标左键放开
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
-    time.sleep(0.08)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
-    time.sleep(0.05)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
     time.sleep(0.3)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
-    time.sleep(0.05)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
 
 
@@ -58,7 +54,9 @@ def get_windows_title():
             return 1
     for t in lt:
         #print(t)
-        if t == "/perform":
+        # if t == "/perform":
+        #     return 0
+        if ("perform" in t) or t == "/perform":
             return 0
     return 1
 
@@ -67,13 +65,17 @@ def get_windows_title():
 # 正常   /perform
 # TouchDesigner
 # Fatal Error
+
+start = time.time() + 600
+
 try:
     # time.sleep(Ys)
     print("ClickThree")
     while True:
+        endTime = time.time()
         Three_Click()
         print(" 等待启动 ... ")
-        time.sleep(15)
+        time.sleep(TDtime)
         print(" 查看启动情况 ")
         a = get_windows_title()
         if a == 0:
@@ -88,23 +90,15 @@ try:
             os.system('taskkill /f /im TouchPlayer099.exe')
             time.sleep(2)
             os.system('taskkill /f /im TouchPlayer099.exe')
-    time.sleep(60)
 
-    while True:
-        a = get_windows_title()
-        if a == 0:
-            break
-        else:
-            print("Kill TD")
-            os.system('taskkill /f /im TouchPlayer099.exe')
-            time.sleep(2)
-            os.system('taskkill /f /im TouchPlayer099.exe')
-        Three_Click()
+        if endTime > start:
+            os.system("shutdown -r -t 1")
 
-    time.sleep(60)
-    a = get_windows_title()
-    if a == 1:
-        os.system("shutdown -r -t 1")
+    # time.sleep(60)
+    #
+    # a = get_windows_title()
+    # if a == 1:
+    #     os.system("shutdown -r -t 1")
 
     handle = win32gui.FindWindow(None, "/perform")
     win32gui.SetForegroundWindow(handle)
@@ -112,6 +106,8 @@ try:
 except:
     print("未知Error")
 
+
+print("yes wancheng ")
 
 # print(st,type(st))
 #
