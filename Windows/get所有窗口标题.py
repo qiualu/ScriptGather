@@ -29,7 +29,6 @@ import win32gui,win32con
 handle = win32gui.FindWindow(None, "/perform")
 print(handle)
 
-
 def show():
     # windows handlers
     hwnd = handle

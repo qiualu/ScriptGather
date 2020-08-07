@@ -5,6 +5,8 @@ import os
 import win32api,win32con,win32gui
 import time
 from win32gui import *
+import pymouse
+
 titles = set()
 def foo(hwnd,mouse):
     #去掉下面这句就所有都输出了，但是我不需要那么多
@@ -32,6 +34,7 @@ with open("TDXY.json","r",encoding="UTF-8") as f:
 print(TDx,TDy,Ys)
 # 1481 1605
 TDx,TDy = 645,30
+m = pymouse.PyMouse()
 def Three_Click():
     # （6）设置鼠标位置
     print(TDx, TDy, Ys)
@@ -44,20 +47,47 @@ def Three_Click():
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
 
+    # win32api.SetCursorPos((TDx, TDy))
+    #m.move(TDx, TDy)
+    # m.click(TDx, TDy, 1)
+    # m.click(TDx, TDy) #双击
+    m.press(TDx, TDy)
+    time.sleep(0.2)
+    m.release(TDx, TDy)
+    # # （2）鼠标左键按下
+    # win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+    # time.sleep(0.05)
+    # # （3）鼠标左键放开
+    # win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
+    # time.sleep(0.08)
+    # win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+    # time.sleep(0.05)
+    # win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
+    # time.sleep(0.3)
+    # win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+    # time.sleep(0.05)
+    # win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
+
 
 def get_windows_title():
     EnumWindows(foo, 0)
     lt = [t for t in titles if t]
     lt.sort()
     for t in lt:
-        if t == "Fatal Error" or t == "TouchDesigner":
+        if t == "Fatal Error" or t == "TouchDesigner" or t == "TouchDesigner Error":
+            print("Show ErrorWindows : **** ",t)
             return 1
     for t in lt:
+
         #print(t)
         # if t == "/perform":
         #     return 0
-        if ("perform" in t) or t == "/perform":
+        #if ("perform" in t) or t == "/perform":
+
+        if t == "/perform":
+            print("***  OK windows : *** ", t)
             return 0
+    print("***  Null windows  *** ")
     return 1
 
 
@@ -103,8 +133,8 @@ try:
     handle = win32gui.FindWindow(None, "/perform")
     win32gui.SetForegroundWindow(handle)
 
-except:
-    print("未知Error")
+except EnvironmentError:
+    print("我真的好南Error",EnvironmentError)
 
 
 print("yes wancheng ")
