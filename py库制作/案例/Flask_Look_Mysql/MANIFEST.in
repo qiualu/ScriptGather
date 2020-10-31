@@ -1,0 +1,7 @@
+include Makefile CHANGES.rst CONTRIBUTING.rst LICENSE AUTHORS tox.ini
+
+recursive-include flask_look_mysql *
+
+graft tests
+
+graft examples

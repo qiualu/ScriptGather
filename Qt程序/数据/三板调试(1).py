@@ -74,7 +74,7 @@ class MainGui(Ui_MainWindow):
 
         # print(self.curve1,self.data1,self.ptr1)
 
-        self.pushButton.clicked.connect(self.btn1_def)
+        self.btn1.clicked.connect(self.btn1_def)
 
         self.data1 = np.random.normal(size=300)
         self.curve1 = self.p1.plot(self.data1)
@@ -108,7 +108,7 @@ class MainGui(Ui_MainWindow):
     def btn1_def(self):
         print(" -- > ")
         # 一区
-        self.p1x[self.ptr1] = self.p1x[self.ptr1-1] + 600
+        self.p1x[self.ptr1] = self.p1x[self.ptr1-1] + 3600*12*12
         self.p1y[self.ptr1] = random.randint(-9,9)
         self.ptr1 += 1
         if self.ptr1 >= len(self.p2y):
@@ -146,7 +146,7 @@ class MainGui(Ui_MainWindow):
             tmp = self.data3
             self.data3 = np.empty(self.data3.shape[0] * 2)
             self.data3[:tmp.shape[0]] = tmp
-        self.curve3.setData(self.data3[:self.ptr3])
+        self.curve3.setData(self.data3[:self.ptr3]) #  , symbol='o'
         self.curve3.setPos(-self.ptr3, 0)
         print(self.data3.shape, self.ptr3, self.data3.shape[0], self.data3.dtype, np.random.normal())
         # print(np.random.normal(),type(np.random.normal()),np.random.normal().dtype)
