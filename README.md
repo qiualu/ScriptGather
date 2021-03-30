@@ -8,3 +8,10 @@ https://pypi.hustunique.com/				# 华中科技大学
 
 
 pyuic5 -o demo.py demo.ui
+
+
+Jupyter notebook
+4. 运行
+$ ipython3 notebook
+
+jupyter notebook --generate-config
