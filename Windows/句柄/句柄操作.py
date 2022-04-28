@@ -38,8 +38,8 @@ def get_child_windows(parent):
 zi = get_child_windows(handle)[0]
 
 print(get_child_windows(zi))
-
-
+win32gui.SetForegroundWindow(handle)  #激活窗口
+# ----------------------------------  发送窗口信息 ----------------------------------------------------
 # win32gui.PostMessage(handle, win32con.WM_CLOSE, 0, 0)
 # time.sleep(3)
 # win32gui.PostMessage(zi, win32con.WM_KEYDOWN, 'q', 0)
@@ -55,4 +55,17 @@ keydownup(key_num["e"])
 # time.sleep(0.01)
 # win32api.SendMessage(handle,win32con.WM_KEYUP,'a',0)
 # win32api.PostMessage(handle,win32con.WM_CHAR,'c',0);
+
+#---------------------------------- 获得窗口大小 ---------------------------------------------------------
+left, top, right, bottom = win32gui.GetWindowRect(handle)
+print(left , top, right, bottom)
+#---------------------------------- 移动 left, top, 设置大小 right, bottom ||  置顶---------------------------------------------------------
+win32gui.SetWindowPos(handle, win32con.HWND_TOPMOST, left, top, right, bottom, win32con.SWP_SHOWWINDOW)
+
+
+
+
+
+
+
 

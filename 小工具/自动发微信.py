@@ -48,19 +48,26 @@ def movePos(x, y):
     win32api.SetCursorPos((x, y))
 
 
-def 找个人发信息(名字="",信息=""):
+def 找个人发信息(名字="",信息="",debug = 0):
     # 获取鼠标当前位置
     # hwnd=win32gui.FindWindow("MozillaWindowClass",None)
     hwnd = win32gui.FindWindow("WeChatMainWndForPC", None)
+    if debug == 1:
+        print("hwnd句柄 WeChatMainWndForPC : ",hwnd)
+    if hwnd > 0:
+        win32gui.SetForegroundWindow(hwnd)  # 激活窗口
+    else:
+        print("未登录微信")
+        return
     win32gui.ShowWindow(hwnd, win32con.SW_SHOW)
-
     # 获取窗口左上角和右下角坐标
     left, top, right, bottom = win32gui.GetWindowRect(hwnd)
     # 移动窗口
     # win32gui.MoveWindow(hwnd, 0, 0, 1000, 700, True)
     #获得当前鼠标位置
     mouseX, mouseY = win32api.GetCursorPos()
-    #print(mouseX, mouseY)
+    if debug == 1:
+        print(mouseX, mouseY)
 
     time.sleep(0.01)
     # 1.移动鼠标到通讯录位置，单击打开通讯录
@@ -69,7 +76,6 @@ def 找个人发信息(名字="",信息=""):
     # 2.移动鼠标到搜索框，单击，输入要搜索的名字
     movePos(left + 148, top + 35)
     click()
-    #setText('张敏/zxc')
     setText(名字)
     ctrlV()
     time.sleep(1)  # 别问我为什么要停1秒，问就是给微信一个反应的时间，他反应慢反应不过来，其他位置暂停的原因同样
@@ -91,7 +97,15 @@ def 获取彩虹屁():
         'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'
     }
 
-    response = requests.get(url,headers=headers)
+    try:
+        response = requests.get(url, headers=headers)
+    except BaseException as e:
+        print(" --------------  V  程序错误捕捉 V-------------------")
+        print(e)
+        print(" -------------- ^ BaseException ^-------------------")
+        print(" -------------- 可能因为 代理网络导致访问失败 关闭相关软件再试试 -------------------")
+        print(" -------------- ^ requests.get(url,headers=headers) ^-------------------")
+        return "爱你"
     res = response.text
 
     return res
@@ -126,13 +140,18 @@ def 获得祖安问候():
 
 
 if __name__ == "__main__":
-    # 彩虹 = 获取彩虹屁()
-    彩虹 = 获得祖安问候()
+    彩虹 = 获取彩虹屁()
+    # 彩虹 = 获得祖安问候()
     print(彩虹)
-    # 找个人发信息('张敏/zxc', 彩虹)
-    找个人发信息('何柳桦 / light', 彩虹)
+    # 找个人发信息('张敏', 彩虹)
+    # 找个人发信息('何柳桦 / light', 彩虹)
     # print(彩虹)何柳桦 / light
-    #
+    if 彩虹 != "爱你":
+        while dd:
+            time.sleep(1)
+            print("等待", dd)
+            dd -= 1
+        找个人发信息('张敏', 彩虹)
     # while True:
     #     彩虹 = 获得祖安问候()
     #     找个人发信息('何柳桦 / light',彩虹)

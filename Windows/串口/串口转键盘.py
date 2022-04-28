@@ -20,8 +20,6 @@ import time
 # win32api.PostMessage(handle,win32con.WM_CHAR,'c',0);
 
 
-
-
 def recv(serial):
     while True:
         data = serial.read_all()

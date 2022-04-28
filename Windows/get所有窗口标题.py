@@ -26,7 +26,7 @@ for t in lt:
 
 # 获得句柄
 import win32gui,win32con
-handle = win32gui.FindWindow(None, "/perform")
+handle = win32gui.FindWindow(None, "泼墨")
 print(handle)
 
 def show():
