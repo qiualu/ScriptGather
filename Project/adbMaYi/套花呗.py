@@ -3,6 +3,33 @@ import os
 import time
 a = 0
 
+# print(" 监管 ")
+# os.popen("adb shell input tap 540 1620 ")
+# time.sleep(4.5)
+#
+#
+#
+# print(" 密码 ")
+# os.popen("adb shell input tap 959 1158 ")
+# time.sleep(3.5)
+# print(" 数值 ")
+
+# os.popen("adb shell input tap 519  1744 ")
+# time.sleep(0.5)
+# os.popen("adb shell input tap 177  1749 ")
+# time.sleep(0.5)
+# os.popen("adb shell input tap 902 1890 ")
+# time.sleep(0.5)
+# os.popen("adb shell input tap 177  1749 ")
+# time.sleep(0.5)
+# os.popen("adb shell input tap 177  1749 ")
+# time.sleep(0.5)
+# os.popen("adb shell input tap 565  2251 ")
+# time.sleep(0.5)
+#
+# time.sleep(5)
+# os.popen("adb shell input tap 540  2266 ")
+# time.sleep(3)
 
 while a < 15:
     a += 1
