@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import win32clipboard as w
 import win32con
 import win32api
@@ -88,75 +90,58 @@ def 找个人发信息(名字="",信息="",debug = 0):
     # 鼠标移动回原位
     movePos(mouseX, mouseY)
 
-def 获取彩虹屁():
+
+def GetHead():
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'
+    }
+    return headers
+
+def 获取沙雕文案( url = 'https://api.shadiao.pro/chp'):
     # print("获取彩虹屁")
 
-    url = 'https://chp.shadiao.app/api.php'
+    # url = 'https://api.shadiao.pro/chp'
 
-    headers = {
-        'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'
-    }
+    headers = GetHead()
 
     try:
         response = requests.get(url, headers=headers)
     except BaseException as e:
-        print(" --------------  V  程序错误捕捉 V-------------------")
-        print(e)
-        print(" -------------- ^ BaseException ^-------------------")
-        print(" -------------- 可能因为 代理网络导致访问失败 关闭相关软件再试试 -------------------")
-        print(" -------------- ^ requests.get(url,headers=headers) ^-------------------")
         return "爱你"
-    res = response.text
-
+    # res = response.text
+    res = response.json()['data']['text']
     return res
 
-# 口吐莲花
-def 获得祖安问候():
-    # https: // zuanbot.com /
-    # print("获取彩虹屁")
-    # url = 'https://chp.shadiao.app/api.php'
-    #  https://zuanbot.com/api.php?level=min&lang=zh_cn
-    url = 'https://zuanbot.com/api.php?level=min&lang=zh_cn'
 
-    headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'
-    }
-    head = {
-    "accept": "* / *",
-    "accept - encoding": "gzip, deflate, br",
-    "accept - language": "zh - CN, zh; q = 0.9",
-    "referer": "https: // zuanbot.com /",
-    "sec-fetch-dest": "empty",
-    "sec-fetch-mode": "cors",
-    "sec-fetch-site": "same-origin",
-    "user-agent": "Mozilla / 5.0(WindowsNT10.0;Win64;x64) AppleWebKit / 537.36(KHTML, likeGecko) Chrome / 87.0.4280.141Safari / 537.36",
-    "x-requested-with": "XMLHttpRequest"
-    }
-    response = requests.get(url, headers=head)
-    res = response.text
-    print(res)
-    return res
 
 
 
 if __name__ == "__main__":
-    彩虹 = 获取彩虹屁()
-    # 彩虹 = 获得祖安问候()
-    print(彩虹)
-    # 找个人发信息('张敏', 彩虹)
-    # 找个人发信息('何柳桦 / light', 彩虹)
-    # print(彩虹)何柳桦 / light
+
+
+    """
+        彩虹屁 =	"https://api.shadiao.pro/chp"
+        朋友圈文案 =	"https://api.shadiao.pro/pyq"
+        毒鸡汤 =	"https://api.shadiao.pro/du"
+    """
+
+    彩虹屁 = r"https://api.shadiao.pro/chp"
+    朋友圈文案 = r"https://api.shadiao.pro/pyq"
+    毒鸡汤 = r"https://api.shadiao.pro/du"
+
+    彩虹 = 获取沙雕文案(彩虹屁)
+    # 彩虹 = 获取沙雕文案(朋友圈文案)
+    # 彩虹 = 获取沙雕文案(毒鸡汤)
+
+    print("彩虹",彩虹)
+
+    dd = 10
     if 彩虹 != "爱你":
         while dd:
             time.sleep(1)
             print("等待", dd)
             dd -= 1
         找个人发信息('张敏', 彩虹)
-    # while True:
-    #     彩虹 = 获得祖安问候()
-    #     找个人发信息('何柳桦 / light',彩虹)
-    #     time.sleep(2)
-
 
 
 
