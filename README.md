@@ -24,3 +24,15 @@ RAS 非对称加密
 pip install pycryptodome
 pip install pycrypto
 
+V0.0 YoloGather 创建 2022.10.09 LightPC YL
+
+
+D:\ProgramData\Anaconda3\envs\ScriptGather\Lib\site-packages\cv2
+解决方法1：
+手动添加opencv库路径，打包时添加 --paths，参数内容为cv2包的文件夹路径。
+pyinstaller -w xxx.py --paths="xxx\Lib\site-packages\cv2"
+
+
+pip install pynput
+pip --default-timeout=500 install catboost 
+pip install catboost -i https://pypi.douban.com/simple

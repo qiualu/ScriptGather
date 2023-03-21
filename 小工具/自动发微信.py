@@ -107,6 +107,7 @@ def 获取沙雕文案( url = 'https://api.shadiao.pro/chp'):
     try:
         response = requests.get(url, headers=headers)
     except BaseException as e:
+        print(e)
         return "爱你"
     # res = response.text
     res = response.json()['data']['text']
